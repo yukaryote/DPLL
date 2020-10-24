@@ -1,12 +1,8 @@
 #!/usr/bin/env python3
-"""6.009 Lab 6 -- Boolean satisfiability solving"""
 
 import sys
 
 sys.setrecursionlimit(10000)
-
-
-# NO ADDITIONAL IMPORTS
 
 
 def simplify(formula, var, val):
@@ -101,62 +97,8 @@ def satisfying_assignment(formula, assign=None):
     return assign
 
 
-def boolify_scheduling_problem(student_preferences, session_capacities):
-    """
-    Convert a quiz-room-scheduling problem into a Boolean formula.
-
-    student_preferences: a dictionary mapping a student name (string) to a set
-                         of session names (strings) that work for that student
-    session_capacities: a dictionary mapping each session name to a positive
-                        integer for how many students can fit in that session
-
-    Returns: a CNF formula encoding the scheduling problem, as per the
-             lab write-up
-    We assume no student or session names contain underscores.
-    """
-    raise NotImplementedError
-
-
 if __name__ == '__main__':
     import doctest
 
     _doctest_flags = doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS
     doctest.testmod(optionflags=_doctest_flags)
-    boolify_scheduling_problem({'Alice': {'basement', 'penthouse'},
-                                'Bob': {'kitchen'},
-                                'Charles': {'basement', 'kitchen'},
-                                'Dana': {'kitchen', 'penthouse', 'basement'}},
-                               {'basement': 1,
-                                'kitchen': 2,
-                                'penthouse': 4})
-    ans1 = [[('Alice_basement', True), ('Alice_penthouse', True)],
-            [('Bob_kitchen', True)],
-            [('Charles_basement', True), ('Charles_kitchen', True)],
-            [('Dana_basement', True), ('Dana_penthouse', True), ('Dana_kitchen', True)]]
-
-    ans2 = [[('Alice_basement', False), ('Alice_penthouse', False)],
-           [('Alice_basement', False), ('Alice_kitchen', False)],
-           [('Alice_kitchen', False), ('Alice_penthouse', False)],
-           [('Bob_basement', False), ('Bob_penthouse', False)],
-           [('Bob_basement', False), ('Bob_kitchen', False)],
-           [('Bob_kitchen', False), ('Bob_penthouse', False)],
-           [('Charles_basement', False), ('Charles_penthouse', False)],
-           [('Charles_basement', False), ('Charles_kitchen', False)],
-           [('Charles_kitchen', False), ('Charles_penthouse', False)],
-           [('Dana_basement', False), ('Dana_penthouse', False)],
-           [('Dana_basement', False), ('Dana_kitchen', False)],
-           [('Dana_kitchen', False), ('Dana_penthouse', False)]]
-    ans3 = [[('Alice_basement', True), ('Bob_basement', False)],
-            [('Alice_basement', True), ('Charles_basement', False)],
-            [('Alice_basement', True), ('Dana_basement', False)],
-           [('Alice_basement', False), ('Alice_kitchen', False)],
-           [('Alice_kitchen', False), ('Alice_penthouse', False)],
-           [('Bob_basement', False), ('Bob_penthouse', False)],
-           [('Bob_basement', False), ('Bob_kitchen', False)],
-           [('Bob_kitchen', False), ('Bob_penthouse', False)],
-           [('Charles_basement', False), ('Charles_penthouse', False)],
-           [('Charles_basement', False), ('Charles_kitchen', False)],
-           [('Charles_kitchen', False), ('Charles_penthouse', False)],
-           [('Dana_basement', False), ('Dana_penthouse', False)],
-           [('Dana_basement', False), ('Dana_kitchen', False)],
-           [('Dana_kitchen', False), ('Dana_penthouse', False)]]
